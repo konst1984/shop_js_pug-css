@@ -1,0 +1,62 @@
+.guide,.from-blog{
+	background-color: var(--snowwhite-color);
+}
+
+
+:is(.guide , .fromblog) .card__image .card__thumbnail{
+	position: relative;
+}
+
+.card__image{
+	overflow: hidden;
+}
+
+.card__image img{
+	transition: scale 0.2s;
+}
+
+
+.card__image:hover img{
+	scale: 1.1;
+}
+
+.scrolling-horizontal{
+	display: grid;
+	grid-template-columns: repeat(3,minmax(290px, 1fr));
+	gap: 20px;
+	scroll-snap-align: start;
+	max-width: 100%;
+	overflow-x: auto;
+}
+
+.scrolling-horizontal::-webkit-scrollbar{
+	height: 5px;
+}
+
+.scrolling-horizontal::-webkit-scrollbar-track {
+	border-radius: 4px;
+	background-color: var(--snowwhite-color);
+}
+
+.scrolling-horizontal::-webkit-scrollbar-thumb {
+	border-radius: 5px;
+	background-color: var(--light-color);
+}
+
+.card__info{
+  display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	gap: 15px;
+	text-align: center;
+}
+
+.card__title{
+	flex-grow:1;
+	font-size: 18px;
+	font-weight: var(--fw);
+	line-height: 20px;
+	text-transform: capitalize;
+}
+
+

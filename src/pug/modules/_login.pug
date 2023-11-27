@@ -1,0 +1,19 @@
+.data-popup.login-modal#login-modal
+    .wrapper
+        .data-content
+           button.close-btn.close-btn__mobile(aria-label="Close login form")
+               i.ri-close-line
+           form.login-form.text_prata(aria-label="login form")
+               label(for="login-email") Email
+               input#login-email(type='email' placeholder='Your email' required autofocus)
+               label(for="login-password") Password
+               input#login-password(
+                   type="password"
+                   name="password"
+                   minlength="8"
+                   maxlength="16"
+                   placeholder='Password'
+                   required)
+               button.btn.btn__primary.btn__primary_green Login
+               span OR
+               button.btn.btn__primary.btn__primary_green Register

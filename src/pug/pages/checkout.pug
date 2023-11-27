@@ -1,0 +1,90 @@
+extends ../libs/_layout
+include ../libs/_libs
+
+block title
+    title Checkout page
+block subheader
+    .subheader
+        ul.subheader__list.list-inline
+          each value in ['home', 'checkout']
+              li.subheader__item
+                  span= value
+block main
+    section.checkout(aria-labelledby="checkout-title")
+        .container.container_padding.container_wide
+            h1.title#checkout-title placing an order
+            .content.box-grid
+                .checkout-address
+                    h2.title.sub-title Billing details
+                    form.checkout-form(aria-label="Form from placing an order")
+                        .box-grid
+                            +inpuField('First name')
+                            +inpuField('Last name')
+                        +inpuField('Company name')
+                        label.checkout-label Country / Region ⃰
+                            select.checkout-field(name='country' id='country')
+                              each option, index in ['','United state', 'Greate Britain', 'France', 'Spain', 'Russia', 'China', 'Other' ]
+                                option(value=index)= option
+                        +inpuField('Street address')
+                        +inpuField('','Apartment, suite etc. (Optional)')
+                        +inpuField('Town / City')
+                        +inpuField('Last name')
+                        +inpuField('Last name')
+                        +inpuField('State')
+                        +inpuField('Zip Code')
+                        .box-grid
+                            +inpuField('Phone')
+                            +inpuField('Email address')
+                        label.flex
+                            input.checker#terms(type='checkbox')
+                            span Create an account?
+                .checkout-products
+                    h2.title.sub-title Order summary
+                    .checkout-products__list-wrapper
+                        .checkout-products__list
+                    .checkout-products__total
+                        .checkout-products__total-wrapper
+                            .payment-options
+                                h3 Select payment
+                                ul.payment-options__list.list-inline
+                                  each icon, index in ['ri-bank-card-line','ri-paypal-line','ri-hand-coin-line']
+                                      li.payment-options__item
+                                          label
+                                            if index === 0
+                                                input.checker(type='radio' name='pay-option' checked)
+                                                i(class=`${icon}`)
+                                            else
+                                                input.checker(type='radio' name='pay-option')
+                                                i(class=`${icon}`)
+                            +discountPrice('cart', 'shipping-checkout')
+block modal
+    .data-popup.confirm-modal#order-accept
+        .wrapper
+            .data-content
+                p Within an hour, the manager will contact you to clarify the details of the order.
+                p Thank you for choosing us!
+                p In a few seconds you will be redirected to the main page.
+                img(src=require(`../../../src/images/order_completed_icon.webp`) alt='')
+    .data-popup.confirm-modal#order-cancel(aria-label="Modal confirm cancel order")
+        .wrapper
+            .data-content
+                p Are you sure? Please confirm your actions.
+                .checkout-buttons
+                    button.btn.btn__primary.btn__primary_blue.open-btn(data-clear = "accept" ) Yes
+                    button.btn.btn__primary.btn__primary_red.open-btn(data-clear = "cancel") Not sure
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

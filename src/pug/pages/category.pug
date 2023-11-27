@@ -1,0 +1,139 @@
+extends ../libs/_layout
+include ../libs/_libs
+
+block title
+    title Category page
+block subheader
+    .header-content
+        .subheader
+            ul.subheader__list.list-inline
+              each link, index  in ['home', 'products','sweater']
+                  li.subheader__item
+                      span= link
+block main
+    section.category
+        .container.container_padding.container_wide
+            .sort-list#list-categories
+                h1.title.title_pb
+                    button.option-btn#option-btn-category(aria-label="open dropdown list categories")
+                        span.option-title Sweater
+                        i.ri-arrow-down-s-line
+                ul.options-list.list-hover
+                    li.options-item.active
+                        button(data-category='sweater').options-item__btn Sweaters
+                    li.options-item
+                        button(data-category='hoodie').options-item__btn Hoodies
+                    li.options-item
+                        button(data-category='shirt').options-item__btn shirts
+            .category-wrapper
+                .content
+                    .sidebar-filter#sidebar-filter
+                        .sidebar-filter__content
+                            button.close-btn.close-btn__mobile
+                                i.ri-close-line
+                            .sidebar-filter__title Filter
+                            .widget
+                                .summary
+                                    input.widget__checkbox#size(type='checkbox' name='categories')
+                                    label(for="size")
+                                        span Size
+                                        i.ri-arrow-down-s-line
+                                    .accord.product-size
+                                        div.size.flex
+                                          each size,index in ['s', 'm', 'l', 'xl']
+                                              if index === 2
+                                                  button.size__btn.size__btn_hover.selected= size
+                                              else
+                                                  button.size__btn.size__btn_hover= size
+                            .widget
+                                .summary
+                                    input.widget__checkbox#colors(type='checkbox' name='categories')
+                                    label(for='colors')
+                                        span Colors
+                                        i.ri-arrow-down-s-line
+                                    .accord.product-color
+                                        div.color.flex
+                                            each btn,index in ['tosca', 'brown', 'ocean']
+                                                if index === 0
+                                                    button(class=`color__btn color__btn_hover color__btn_${btn}`)
+                                                else
+                                                    button(class=`color__btn color__btn_hover color__btn_${btn}`)
+                            .widget
+                                .summary
+                                    input.widget__checkbox#categories(type='checkbox' name='categories')
+                                    label(for='categories')
+                                        span Categories
+                                        i.ri-arrow-down-s-line
+                                    .accord.categories.list-block
+                                        ul.categories__list.list-mark
+                                          +List(['active wear', 'beauty', 'candles', 'fashion', 'furniture', 'Glasses', 'Hat', 'Mail polishing', 'organic', 'backpack', 'bedding', 'coffee', 'living', 'plants', 'sneaker'],'categories__link')
+                            .widget
+                                .summary
+                                    input.widget__checkbox#brands(type='checkbox' name='categories')
+                                    label(for='brands')
+                                        span Brands
+                                        i.ri-arrow-down-s-line
+                                    .accord.categories.list-block
+                                        ul.categories__list.list-mark
+                                          +List(['Prada', 'Gucci', 'Chanel', 'Ganni','Zara', 'Adidas', 'Nike', 'Puma','Dolce & Gabbana', 'Louis Vuitton', 'Chanel', 'Armani','Dior','Hugo Boss'],'categories__link')
+                            .widget
+                                .summary
+                                    label(for='price')
+                                        span Price
+                                    .range-track
+                                        span.slider-thumb 25
+                                        input.widget__range#price(type='range' value='25' min='0' max='200' step='1')
+                                    .price-range.text_gray
+                                        span $25
+                                        span $200
+                    .category-content
+                        .category-filter.category-filter_mb
+                            button.open-btn.category-filter__btn(data-target='sidebar-filter')
+                                i.ri-filter-line
+                            .left
+                                span.left__span.text_gray Showing 4 of 24 results
+                            .right
+                                .sort-list#list-params
+                                    button.option-btn#option-btn-params(aria-label="open dropdown list grade params")
+                                        span.right__span.option-title Default sorting
+                                        i.ri-arrow-down-s-line
+                                    ul.options-list.options-list__params.list-hover
+                                        li.options-item.active
+                                            button.options-item__btn Popular
+                                        li.options-item
+                                            button.options-item__btn Rating
+                                        li.options-item
+                                            button.options-item__btn Latest
+                                        li.options-item
+                                            button.options-item__btn Price: low to high
+                                        li.options-item
+                                            button.options-item__btn Price: high to low
+                                ul.list-inline.list-hover
+                                    li
+                                        button
+                                            i.ri-pause-mini-line
+                                    li
+                                        button
+                                            i.ri-list-check-2
+                                    li
+                                        button
+                                            i.ri-layout-grid-line
+                                    li
+                                        button
+                                            i.ri-layout-masonry-line
+                        .tabbed
+                            .sort-data.active#sweater
+                                .box-grid
+                                    span.loader
+                                    span.loader
+                                    span.loader
+                                    span.loader
+                                    .btn.btn__primary Load more
+
+
+
+
+
+
+
+

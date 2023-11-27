@@ -1,0 +1,128 @@
+include ../libs/_libs
+-
+    var headerProductsCardInfo = [
+        {
+            "id": 1,
+            "image": "sweater_01.webp",
+            "imageHover": "sweater_01b.webp",
+            "sale": 25,
+            "title": "The Sweater in Tosca",
+            "oldPrice": 50,
+            "price": 25,
+            "category": "sweaters",
+            "color": ["lightcyan", "sandybrown", "ocean", "red"],
+            "size": ["s", "m", "l"],
+            "new": true,
+            "quantity": 1
+        },
+        {
+            "id": 2,
+            "image": "sweater_02.webp",
+            "imageHover": "sweater_02b.webp",
+            "sale": 40,
+            "title": "Ocean blue LLC2",
+            "oldPrice": 75,
+            "price": 45,
+            "category": "sweaters",
+            "color": ["lightcyan", "sandybrown", "ocean", "red"],
+            "size": ["s", "m", "l"],
+            "quantity": 1
+        },
+        {
+            "id": 5,
+            "image": "shirt_01.webp",
+            "imageHover": "shirt_01b.webp",
+            "sale": 25,
+            "title": "Inner sweater in office",
+            "oldPrice": 65,
+            "price": 52,
+            "category": "shirts",
+            "color": ["lightblue", "deepskyblue"],
+            "size": ["s", "m", "l"],
+            "quantity": 1
+        }
+    ];
+
+header#header
+    .header-wrapper
+        .container.container_wide
+            .header-content
+                .header-left
+                    .menu-bar
+                        button.open-btn.open-btn__mobile(data-target='mobile-menu' aria-label="open mobile menu")
+                            i.ri-menu-line
+                    div.list-inline.list-inline_hover
+                        button.open-btn(aria-label='login' data-target='login-modal')
+                            i.ri-user-line
+                .header-center
+                    nav.menu(aria-label="home navigation")
+                        ul.menu__list
+                            li.menu__item
+                                a.menu__link.link-hover(href='././')
+                                    span.menu__link-span Home
+                            li.menu__item
+                                a.menu__link.link-hover(href='#0')
+                                    span.menu__link-span Products
+                                    i.ri-arrow-down-s-line
+                                ul.sub-menu.sub-menu_products
+                                    li
+                                        .container
+                                            .sub-menu_products-content
+                                                +box-grid(headerProductsCardInfo)
+                                                .links
+                                                    .list-block
+                                                        h3.block-title Apparel
+                                                        ul.list-mark(role='list')
+                                                          each val in ['Prada', 'Gucci', 'Chanel', 'Ganni', 'Zara']
+                                                              li
+                                                                  a(href='#0')= val
+                                                    .list-block
+                                                        h3.block-title Shoes
+                                                        ul.list-mark(role='list')
+                                                          each val in ['Adidas', 'Nike', 'Puma', 'Gucci', 'Dolce & Gabbana','Louis Vuitton']
+                                                              li
+                                                                  a(href='#0')= val
+                                                    .list-block
+                                                        h3.block-title Perfume
+                                                        ul.list-mark(role='list')
+                                                          each val in ['Armani', 'Channel', 'Dior', 'Gucci', 'Hugo Boss']
+                                                              li
+                                                                  a(href='#0')= val
+                            li.menu__item
+                                a.menu__link.link-hover(href='./category.html')
+                                    span.menu__link-span Categories
+                        ul.menu__list
+                            li.menu__item
+                                a.menu__link.link-hover(href='#0' )
+                                    span.menu__link-span Special
+                                    i.ri-arrow-down-s-line
+                                ul.sub-menu.list-block.list-hover(role="list")
+                                   each val in ['Dolce & Gabbana', 'Louis Vuitton', 'Versace', 'Dior']
+                                       li
+                                           a(href='#0')= val
+                            li.menu__item
+                                a.menu__link.link-hover(href='#0')
+                                    span.menu__link-span Sale
+                    .branding.flex-center
+                        a.branding__link(href='././' aria-label='Theshop') Theshop
+                .header-right
+                    div.list-inline.list-inline_hover
+                        button.open-btn(data-target='search-float' aria-label='open search field')
+                            i.ri-search-line
+                        div.button-marker
+                            span.item-floating.flex-center.cart-icon 0
+                            button.open-btn(data-target='cart-menu' aria-label='open cart menu')
+                                i.ri-shopping-bag-line
+#search-float.search-float
+    .container.container_wide
+        search(role="search")
+            form.search-form(action='')
+                label.search-label
+                    i.ri-search-line
+                    input.input(type='search' placeholder='Search products')
+                    button.close-btn.close-btn__search(type='button' aria-label='close search field')
+                        i.ri-close-line
+
+
+
+

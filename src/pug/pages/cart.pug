@@ -1,0 +1,71 @@
+extends ../libs/_layout
+include ../libs/_libs
+
+block title
+    title Cart page
+block subheader
+    .subheader
+        ul.subheader__list.list-inline
+          each value in ['home', 'cart']
+              li.subheader__item
+                  span= value
+block main
+    section.cart#cart
+        .container.container_wide
+            h1.title Cart
+            .content
+                .cart-empty
+                    h2.title Cart is empty
+                    div.cart-empty__icon
+                        i.ri-shopping-basket-fill
+                .cart-table
+                    .product-list.has-bg
+                        .cart-table__title
+                            .box-grid
+                                .grouping
+                                    span
+                                    span Product
+                                    span Price
+                                    span Qty
+                                    span Total
+                                    span
+                        .cart-table__content
+                            .box-grid
+                    button.open-btn.cart-clear(data-target="clear-cart") Clear cart
+                .cart-total
+                    .product-list.has-bg
+                        .box-grid
+                            .add-note
+                                .grouping
+                                    textarea.add-note__textarea(rows='3' placeholder='Additional note +')
+                            .sub-total
+                                .sub-total__content.flex
+                                    span Subtotal:
+                                    div.sub-total__price-block
+                                        span $
+                                        span.sub-total__price(data-total) 0.00
+                                .sub-total__terms
+                                    label.flex-ac
+                                        input.checker#terms(type='checkbox')
+                                        span I agree to #[a.link-hover(href='#a') Terms & Conditions]
+                                a(href='./checkout.html' data-checkout).btn.btn__primary.btn__primary_green Checkout
+block modal
+    .data-popup.confirm-modal#clear-cart(aria-label="Modal confirm clear cart")
+        .wrapper
+            .data-content
+                p Are you sure? Please confirm your actions.
+                .checkout-buttons
+                    button.btn.btn__primary.btn__primary_blue.open-btn(data-clear = "accept" ) Yes
+                    button.btn.btn__primary.btn__primary_red.open-btn(data-clear = "cancel") Not sure
+
+
+
+
+
+
+
+
+
+
+
+

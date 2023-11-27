@@ -1,0 +1,54 @@
+-
+    var linksSocialFooter = ['ri-facebook-line', 'ri-instagram-line', 'ri-twitter-line' ,'ri-pinterest-line']
+
+footer.footer
+    .footer-inner
+        .container
+            .footer-wrapper
+                .footer-top
+                    .subscribe
+                        h3 Get voucher from us
+                        p.text_gray Enter your email below to be the first to know about new collections and product launches
+                        form.subscribe__form(aria-label="subscribe to our news")
+                            i.ri-mail-line
+                            input(type='text' class='subscribe__input' placeholder='Enter your email address')
+                            button.btn.btn__primary.subscribe__submit(aria-label="subscribe submit")
+                                i.ri-arrow-right-line
+                    .footer__links-block
+                        h3.block-title Service
+                        ul.list-mark(role='list')
+                          each link in ['About us', 'Careers', 'Delivery Information', 'Terms & Condition', 'Privacy Policy']
+                             li
+                                a.text.text_gray(href='#0')= link
+                    .footer__links-block
+                        h3.block-title Pages
+                        ul.list-mark(role='list')
+                          each link in ['My account', 'Login', 'Wishlist', 'Cart', 'Checkout']
+                              li
+                                  a.text.text_gray(href='#0')= link
+                    .footer__links-block
+                        h3.block-title Contacts
+                        .address.text-grey.list-mark
+                            p.text.text_gray Moscow
+                            p
+                                a.text.text_gray(href="tel:+74959009977") +7 495 900 99 77
+                                br
+                                a.text.text_gray(href="mailto:hello@gmail.com") hello@gmail.com
+                            p.text.text_gray
+                                span Weekdays:  6AM to 8AM <br/>
+                                span Saturday:  6AM to 3AM <br/>
+                                span Sunday:  Closed
+                .footer-bottom
+                    div
+                        ul.list-inline.list-inline_hover(role='list')
+                          each link in linksSocialFooter
+                            - var clas = link;
+                              li
+                                  a(href='#0')
+                                      i(class=`${clas}`)
+                    - var year = new Date().getFullYear()
+                    p.copyright= `© ${year} Konst_V. All rights reserved`
+
+
+
+

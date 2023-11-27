@@ -1,0 +1,42 @@
+{
+  "name": "webpacke",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "wp-server": "webpack serve --env port=3008",
+    "jsonserver": "json-server --watch ./src/jsonserver/db.json --port 3004",
+    "dev": "concurrently --kill-others \"npm run wp-server\" \"npm run jsonserver\"",
+    "stylelint:fix": "npx stylelint \"**/*.css\" --fix",
+    "build:prod": "webpack --env mode=production",
+    "build:dev": "webpack --env mode=development"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.23.3",
+    "@babel/preset-env": "^7.23.3",
+    "babel-loader": "^9.1.3",
+    "concurrently": "^8.2.2",
+    "css-loader": "^6.8.1",
+    "html-loader": "^4.2.0",
+    "html-webpack-plugin": "^5.5.3",
+    "mini-css-extract-plugin": "^2.7.6",
+    "postcss-lit": "^1.1.0",
+    "pug": "^2.0.4",
+    "pug-loader": "^2.4.0",
+    "style-loader": "^3.3.3",
+    "stylelint": "^15.11.0",
+    "stylelint-config-property-sort-order-smacss": "^9.1.0",
+    "stylelint-config-standard": "^34.0.0",
+    "stylelint-order": "^6.0.3",
+    "stylelint-webpack-plugin": "^4.1.1",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  },
+  "dependencies": {
+    "json-server": "^0.17.4"
+  }
+}

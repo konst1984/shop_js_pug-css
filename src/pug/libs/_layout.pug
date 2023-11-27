@@ -1,0 +1,22 @@
+include _libs
+doctype html
+html(lang="en")
+    head
+        include ../modules/_head
+        block title
+    body
+        include ../modules/_header
+        main
+            block subheader
+            block main
+        include ../modules/_cart
+        include ../modules/_footer
+        button.scroll-top.scroll-top_btn
+            i.ri-arrow-up-circle-fill
+        .overlay(data-overlay)
+        block modal
+        include ../modules/_login
+        include ../modules/_mobile_menu
+        include ../modules/_mobile_nav
+        script(src='https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js')
+        block scripts

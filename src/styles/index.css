@@ -1,0 +1,7 @@
+@import url('global.css');
+@import url('blocks/style.css');
+@import url('pages/main/style.css');
+@import url('pages/cart/style.css');
+@import url('pages/category/style.css');
+@import url('pages/product/style.css');
+@import url('pages/checkout/style.css');

@@ -1,0 +1,27 @@
+.frominstagram{
+	padding-bottom: 20px;
+	background-color: var(--snowwhite-color);
+}
+
+.frominstagram .container_wide{
+	--max-width: none;
+	--gutter: 0;
+}
+
+.frominstagram .scrolling-horizontal{
+	display: flex;
+	gap:0;
+}
+
+.frominstagram .card{
+	flex-grow: 1;
+	min-width: 260px;
+	margin: 0 0 40px;
+}
+
+.frominstagram .card__image{
+	width: 100%;
+	margin: 0;
+}
+
+

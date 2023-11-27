@@ -1,0 +1,93 @@
+extends  ../libs/_layout
+include ../libs/_libs
+
+block title
+    title Home page
+
+block title
+    title Home page
+block main
+    .slider.swiper
+        .slider__wrapper.swiper-wrapper
+          each item in [{image: 'slider_01.webp',title: "Feel the tosca color",price: '$25'}, {image: 'slider_02.webp',title: "Inner world of brown",price: '$65'}, {image: 'slider_03.webp', title: "What mix of color", price: '$45'}]
+              +mainSliderItem(item)
+        .slider-pagination
+            .swiper-pagination
+    section.guide(aria-labelledby='products-guide')
+        .container.container_padding
+            .guide-wrapper
+                h2.title.title_pb#products-guide Products Guide
+                .cards.scrolling-horizontal
+                  each item in [{image: 'guide_01.webp',title: "The Blue Ocean MX",description: "Ad, aliquam aspernatur cupiditate debitis dicta dolores doloribus eos eveniet facere iure laborum, laudantium quidem ratione saepe tempora temporibus vel voluptas voluptatum."},{image: 'guide_02.webp',title: "The Great Sweater",description: "Ad, aliquam aspernatur cupiditate debitis dicta dolores doloribus eos eveniet facere iure laborum, laudantium quidem ratione saepe tempora temporibus vel voluptas voluptatum."},{image: 'guide_03.webp',title: "soft purple shirt",description: "Ad, aliquam aspernatur cupiditate debitis dicta dolores doloribus eos eveniet facere iure laborum, laudantium quidem ratione saepe tempora temporibus vel voluptas voluptatum."}]
+                      +inlineCard(item)
+    section.carousel(aria-labelledby='new-arrival')
+        .container.container_padding
+            h2.title.title_pb#new-arrival New Arrival
+            .carousel-wrapper#carousel
+                .carousel-swiper.swiper
+                    .box-grid.swiper-wrapper
+                        span.loader
+                        span.loader
+                        span.loader
+                        span.loader
+                .swiper-nav
+                    button.swiper-button-next
+                        i.arrow-swiper.ri-arrow-right-s-line
+                    button.swiper-button-prev
+                        i.arrow-swiper.ri-arrow-left-s-line
+    section.categories(aria-labelledby='tab-categories')
+        .container.container_padding
+            .categories-wrapper
+                .categories__heading
+                    span.text_gray in
+                    .categories__heading-wrapper
+                        .sort-list#list-categories
+                            h3.title.title_pb.categories__title#tab-categories
+                                button.option-btn#option-btn-category
+                                    span.option-title Sweaters
+                                    i.ri-arrow-down-s-line
+                            ul.options-list.list-hover
+                                li.options-item.active
+                                    button(data-category='sweater').options-item__btn Sweaters
+                                li.options-item
+                                    button(data-category='hoodie').options-item__btn Hoodies
+                                li.options-item
+                                    button(data-category='shirt').options-item__btn shirts
+                .tabbed
+                    .sort-data.active#sweater
+                        .box-grid
+                            span.loader
+                            span.loader
+                            span.loader
+                            span.loader
+    section.banner(aria-label='promo')
+        .container.container_padding
+            .banner-wrapper
+                .banner__content
+                    span Promo
+                    h3.title.banner__title Get ready!#[<br/>]Winter is coming...
+                    a(href='#0').btn.btn__primary Go get it!
+    section.fromblog(aria-labelledby='blog')
+        .container.container_padding
+            .fromblog-wrapper
+                h2.title.title_pb#blog From the Blog
+                .cards.scrolling-horizontal
+                  each item in [{image: 'blog_01.webp',title: "Hoodie",description: 'What is easier knitting or crocheting?'}, {image: 'blog_02.webp',title: "Tips",description: 'Property wear a hoodie'}, {image: 'blog_03.webp',title: "Sweater",description: 'What should i wear undder a sweater?'}]
+                      +inlineCard(item, 'fromblog')
+                a(href='#0').btn.btn__primary.fromblog__btn Read more
+    section.frominstagram(aria-labelledby='from-instagram')
+        .container.container_padding.container_wide
+            .frominstagram-wrapper
+                h2.title.title_pb#from-instagram Popular Instagram Photos
+                .cards.scrolling-horizontal
+                  each item in ['ig_01.webp', 'ig_02.webp', 'ig_03.webp', 'ig_04.webp', 'ig_05.webp']
+                      .card
+                          .card__image.card__box-image
+                              img(src=require(`../../../src/images/${item}`)  alt='' loading='lazy')
+                              .actions
+                                  ul
+                                      li
+                                          a.actions__link(href='#0')
+                                              i.ri-instagram-line
+
+

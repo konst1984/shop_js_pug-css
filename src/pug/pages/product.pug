@@ -1,0 +1,267 @@
+extends ../libs/_layout
+include ../libs/_libs
+
+block title
+    title Product page
+block subheader
+    .subheader
+        ul.subheader__list.list-inline
+          each value  in ['home', 'products','sweater']
+              li.subheader__item
+                  span= value
+          li.subheader__item
+              span the sweater in tosca
+block main
+    section.single#single-page(aria-label="Details product")
+        .container.container_padding
+            .product
+                .product-wrapper.box-grid
+                    .product-image.card__box-image
+                        .outer-main
+                            .outer-main__swiper.swiper
+                                .outer-main__wrapper.swiper-wrapper
+                                    span.single-loader
+                            .custom-pagination
+                                .swiper-scrollbar
+                        .outer-card
+                            .outer-card__swiper.swiper
+                                .outer-card__wrapper.swiper-wrapper
+                    .summary
+                        span.single-loader
+                        .summary-content.hide
+                            h1.title
+                            .product-group
+                                .product-price
+                                    span.current-price
+                                    .product-price__sale.flex
+                                        .price-before
+                                        .price-discount
+                                .product-rating.flex
+                                    span
+                                        i.ri-star-fill
+                                        span 4.8
+                                    a(href='#0')  3 Reviews
+                            .product-color
+                                span Colors:
+                                div.color.flex
+                            .product-size
+                                span Size:
+                                div.size.flex
+                            .product-stock.flex
+                                strong 201
+                                span.text_gray in stock
+                                i.ri-checkbox-circle-line
+                        form.product-form
+                            .product-quantity.flex-ac
+                                button.product-quantity__btn.product-quantity__btn_decrease(type='button' data-action='decrease') -
+                                label.label
+                                    input.input(type='text' value='1' data-quantity)
+                                button.product-quantity__btn.product-quantity__btn_increase(type='button' data-action='increase') +
+                            button.btn.btn__primary.btn__primary_green#addToCart(type='button' disabled) Add to cart
+                        .product-control
+                            ul.product-control__list.list-inline
+                                li.product-control__item
+                                    button.product-control__btn
+                                        i.ri-heart-line
+                                        span Add to wishlist
+                                li.product-control__item
+                                    button.product-control__btn.open-btn
+                                        i.ri-arrow-left-right-line
+                                        span Compare
+                                li.product-control__item
+                                    button.product-control__btn.open-btn(data-target="data-share")
+                                        i.ri-chare-forward-line
+                                        span Share
+                                li.product-control__item
+                                    button.product-control__btn.open-btn(data-target="data-question")
+                                        i.ri-question-line
+                                        span Ask Question
+                        .shipping
+                            ul.shipping__list
+                                li.shipping__item
+                                    i.ri-gift-line
+                                    span  Free shipping & return
+                                    span.text_gray  On order over $100
+                                li.shipping__item
+                                    i.ri-truck-line
+                                    span  Estimate delivery:
+                                    span.text_gray  01 - 07 May, 2030
+            .product-detail
+                .detail-wrapper.tabbed
+                    ul.detail-list.list-inline.scrolling-horizontal
+                        li.detail-item
+                            a.detail-link.active(href='#0' data-target="product-description")
+                                span Product details
+                        li.detail-item
+                            a.detail-link(href='#0' data-target="product-custom")
+                                span Custom
+                        li.detail-item
+                            a.detail-link(href='#0' data-target="product-review")
+                                span Reviews
+                                span.item-floating 3
+                        li.detail-item
+                            a.detail-link(href='#0' data-target="product-shipping")
+                                span Shipping
+                    .product-about.description.active#product-description
+                        .text-block
+                            h3 The Sweater in Tosca
+                            .text_gray
+                                p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aperiam, asperiores commodi dolorem excepturi exercitationem facilis fugiat illo iusto laborum nihil perferendis quia quisquam rerum saepe sed soluta ullam, vel!
+                                p Ad aperiam beatae consequuntur, deserunt dolor dolorum ducimus eaque eos eum illo in ipsa, molestias nostrum provident repellendus saepe suscipit temporibus unde.
+                            .list-block
+                                h4 What is this?
+                                ul.text_gray
+                                    li 95% polyester, 5% Spandex
+                                    li Wrap closure
+                                    li Hand wash only
+                                    li Simple yet flattering dress
+                            .list-block
+                                h4 What makes our products unique?
+                                p.text_gray Always bring you new fashion style and pretty design.We dedicated our effort to design beautiful clothing in top quantity.
+                            .list-block
+                                h4 Washing Instruction
+                                p.text_gray Hand wash or gentle machine wash width cold water
+                    .product-about.custom#product-custom
+                        h3 Our custom sizes
+                        .image-wrapper
+                            img(src=require(`../../../src/images/custom-size.webp`) alt='')
+                    .product-about.review#product-review
+                        h3 Rating & Review
+                        .review__head
+                            .review__rating
+                                strong 4.8
+                                span  3 Reviews
+                            button.btn.btn__primary.open-btn(data-target="data-review") Write a review
+                        .review__body
+                            .profile
+                                .profile__account
+                                    .image-wrapper
+                                        img(src=require(`../../../src/images/ig_01.webp`) alt='')
+                                    .profile__info
+                                        .profile__info-account
+                                            .profile__name Sarah
+                                                .profile__rating
+                                                    i.ri-star-fill
+                                                    i.ri-star-fill
+                                                    i.ri-star-fill
+                                                    i.ri-star-fill
+                                                    i.ri-star-fill
+                                                .profile__date.text_gray On November 7, 2023
+                                        .profile__comment
+                                            strong Awesome Product
+                                            p.text_gray Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis doloribus eos excepturi nam quaerat sunt.
+                            .profile
+                                .profile__account
+                                    .image-wrapper
+                                        img(src=require(`../../../src/images/ig_02.webp`) alt='')
+                                    .profile__info
+                                        .profile__info-account
+                                            .profile__name Jessica
+                                                .profile__rating
+                                                    i.ri-star-fill
+                                                    i.ri-star-fill
+                                                    i.ri-star-fill
+                                                    i.ri-star-fill
+                                                    i.ri-star-fill
+                                                .profile__date.text_gray On November 1, 2023
+                                        .profile__comment
+                                            strong You should by too
+                                            p.text_gray Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis doloribus eos excepturi nam quaerat sunt.
+                            .profile
+                                .profile__account
+                                    .image-wrapper
+                                        img(src=require(`../../../src/images/ig_01.webp`) alt='')
+                                    .profile__info
+                                        .profile__info-account
+                                            .profile__name Deborah
+                                                .profile__rating
+                                                    i.ri-star-fill
+                                                    i.ri-star-fill
+                                                    i.ri-star-fill
+                                                    i.ri-star-fill
+                                                .profile__date.text_gray On July 27, 2023
+                                        .profile__comment
+                                            strong You should by too
+                                            p.text_gray Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis doloribus eos excepturi nam quaerat sunt.
+                    .product-about.shipping#product-shipping
+                        p.text_gray Shipping cost is based on weight.just add products to your cart and use the Shipping calculator to see the shipping price
+                        p.text_gray Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam blanditiis culpa cupiditate debitis doloremque earum fugit impedit libero mollitia nesciunt odio porro!
+            section.carousel
+                .container.container_padding
+                    h2.title.title_pb New Arrival
+                    .carousel-wrapper
+                        .carousel-swiper.swiper
+                            .box-grid.swiper-wrapper
+                                span.loader
+                                span.loader
+                                span.loader
+                                span.loader
+                        .swiper-nav
+                            button.swiper-button-next
+                                i.arrow-swiper.ri-arrow-right-s-line
+                            button.swiper-button-prev
+                                i.arrow-swiper.ri-arrow-left-s-line
+block modal
+    #data-share.data-popup.d-share
+        .wrapper
+            .data-content
+                button.close-btn
+                    i.ri-close-line
+                form.form-share
+                    p.label Copy link
+                    input(type='text' disabled value='https://youtube.com')
+                    span
+                        i.ri-file-copy-line
+                .media-share
+                    p.label Share
+                    ul.list-inline
+                      each icon in ['ri-facebook-line','ri-instagram-line','ri-pinterest-line','ri-youtube-line','ri-whatsapp-line']
+                        li
+                            a(href='#0')
+                                i(class=`${icon}`)
+    #data-question.data-popup.d-question
+        .wrapper
+            .data-content
+                button.close-btn
+                    i.ri-close-line
+                h3.title.data-content__title The question
+                form.form-question(action='')
+                    label
+                        input(type='text' placeholder='Name')
+                    label
+                        input(type='text' placeholder='Email')
+                    label
+                        textarea(name='' cols='30' rows='5' placeholder='Your question is...')
+                    button.btn.btn__secondary Submit
+    #data-review.data-popup.d-review
+        .wrapper
+            .data-content
+                button.close-btn
+                    i.ri-close-line
+                h3.title Write a Review
+                form.form-review(action='')
+                    label
+                        input.form-review__name(type='text' placeholder='Name')
+                    label
+                        input.form-review__email(type='text' placeholder='Email')
+                    .rating
+                        span Your rating:
+                        .stars
+                          each star in ['star_5','star_4','star_3','star_2','star_1']
+                            input(type='radio' name='rating' id=`${star}`)
+                            label(for=`${star}`)
+                                i.ri-star-fill
+                    label
+                        input.form-review__review-title(type='text' placeholder='Review title')
+                    label
+                        textarea.form-review__review-description(name='' cols='30' rows='5' placeholder='Your review is...')
+                    button.btn.btn__secondary Submit
+
+
+
+
+
+
+
+
+

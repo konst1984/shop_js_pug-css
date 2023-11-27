@@ -1,0 +1,39 @@
+.banner{
+	background-color: var(--snowwhite-color);
+	background-image: url('../../../images/banner.webp');
+	background-repeat: no-repeat;
+	background-position-x: right;
+	background-origin: border-box;
+	background-size: cover;
+}
+
+.banner__content span{
+	font-size: var(--fs14);
+	text-transform: uppercase;
+}
+
+.banner__content .btn{
+	width: fit-content;
+}
+
+.title.banner__title{
+	--fs-max: 80px;
+
+	padding: 30px 0;
+	text-align: start;
+}
+
+@media (width <= 480px){
+	.banner {
+		background-position-x: center;
+	}
+}
+
+@media (width >= 768px){
+	.banner {
+		background-size: contain;
+	}
+}
+
+
+

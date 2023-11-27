@@ -1,0 +1,35 @@
+include ../libs/_mixins
+
+#mobile-menu.mobile-menu
+    .mobile-menu__wrapper
+        .mobile-menu__main
+            button.close-btn.close-btn__mobile(aria-label="Close menu")
+                i.ri-close-line
+            nav.mobile-menu__nav(aria-label='Mobile')
+                ul.mobile-menu__list.list-hover(role="list")
+                    li.mobile-menu__item
+                        a.mobile-menu__link(href='././')
+                            span Home
+                    li.mobile-menu__item.has-child
+                        a.mobile-menu__link(href='#0')
+                            span Products
+                            span.child-trigger
+                                i.ri-arrow-down-s-line
+                        ul.sub-menu.list-block.list-hover(role="list")
+                          +List(['Prada', 'Gucci', 'Chanel', 'Ganni','Zara', 'Adidas', 'Nike', 'Puma','Dolce & Gabbana', 'Louis Vuitton', 'Chanel', 'Armani','Dior','Hugo Boss'])
+                    li.mobile-menu__item
+                        a.mobile-menu__link(href='./category.html')
+                            span Categories
+                    li.mobile-menu__item.has-child
+                        a.mobile-menu__link(href='#0')
+                            span Special
+                            span.child-trigger
+                                i.ri-arrow-down-s-line
+                        ul.sub-menu.list-block.list-hover
+                          +List(['Dolce & Gabbana', 'Louis Vuitton', 'Versace', 'Dior'])
+                    li.mobile-menu__item
+                        a.mobile-menu__link(href='#0')
+                            span Sale
+            .auth-buttons
+                a.btn.btn__secondary(href='#0') Login
+                a.btn.btn__primary(href='#0') Register

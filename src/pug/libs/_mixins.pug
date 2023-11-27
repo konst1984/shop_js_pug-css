@@ -1,0 +1,144 @@
+mixin List(list,classname)
+    each value in list
+      li.categories__item
+          a(href='#0' class=classname)= value
+
+mixin inpuField(value, placeholder)
+    if placeholder
+        label.checkout-label
+            input.checkout-field(type='text' placeholder=placeholder)
+    else
+        label.checkout-label= value + ' ' + '⃰'
+            input.checkout-field(type='text' placeholder=value)
+
+mixin actions
+    .actions
+        ul
+            li
+                a.actions__link(href='#0')
+                    i.ri-star-line
+            li
+                a.actions__link(href='#0')
+                    i.ri-arrow-left-right-line
+            li
+                button.actions__link.zoom-image.open-btn(data-target='swiper-zoom')
+                    i.ri-eye-line
+
+mixin sale(item)
+    if item
+        .label
+            span= item.sale
+
+mixin box-grid(valuesCard, title)
+    if title !== 'swiper'
+        .box-grid
+          each item in valuesCard
+              .card
+                  .card__box-image
+                      a.permalink(href=`./product.html?category=${item.category}&id=${item.id}`)
+                      .card__thumbnail
+                          img(src=require(`../../../src/images/${item.image}`) alt=item.type loading='lazy')
+                      .card__thumbnail.card__thumbnail_hover
+                          img(src=require(`../../../src/images/${item.imageHover}`) alt=item.type loading='lazy')
+                      +actions
+                      if item.sale
+                          .label
+                              span= item.sale + '%'
+                  .card__info
+                      h2.card__title.block-title
+                          a.permalink(href=`./product.html?category=${item.category}&id=${item.id}`)= item.title
+                      .card__price
+                          if item.before
+                              span.price-before= item.before
+                          span.current.text_bold= item.current
+    else
+        .carousel-swiper.swiper
+            .box-grid.swiper-wrapper
+                each item in valuesCard
+                    .swiper-slide
+                        .card
+                            .card__box-image
+                                a.permalink(href=`./product.html?old_price=${item.before}&sale=${item.sale}&title=${item.title}&price=${item.current}#${item.type}`)
+                                .card__thumbnail
+                                    img(src=require(`../../../src/images/${item.image}`) alt=item.type loading='lazy')
+                                .card__thumbnail.card__thumbnail_hover
+                                    img(src=require(`../../../src/images/${item.imageHover}`) alt=item.type )
+                                +actions
+                                if item.sale
+                                    .label
+                                        span= item.sale + '%'
+                            .card__info
+                                h2.card__title.block-title
+                                    a.permalink(href=`./product.html?old_price=${item.before}&sale=${item.sale}&title=${item.title}&price=${item.current}#${item.type}`)= item.title
+                                .card__price
+                                    if item.before
+                                        span.price-before= item.before
+                                    span.current.text_bold= item.current
+
+
+
+
+mixin mainSliderItem(item)
+    .slider__item.swiper-slide
+        .slider__item-image
+            img(src=require(`../../../src/images/${item.image}`) alt='' loading='lazy')
+        .slider__item-content
+            .container.wide
+                .content-wrapper
+                    span.slider__item-price= item.price
+                    h3.title.title_pb.slider__item-title= item.title
+                    a.btn.btn__primary(href='#0') Shop now
+
+mixin inlineCard(item, section)
+    .card
+        .card__image
+            img(src=require(`../../../src/images/${item.image}`)  alt='' loading='lazy')
+        if section === 'fromblog'
+            .card__info
+                a.card__link(href='#0')= item.title
+                h3.card__title.text_prata
+                    a(href='#0')= item.description
+        else
+            .card__info
+                h3.card__title.text_prata= item.title
+                p.text.text_gray= item.description
+
+mixin discountPrice(cart, name)
+    .discount
+        form.discount-form
+            input.discount-form__input(placeholder='Coupon')
+            button.btn.btn__secondary.btn__primary_green Apply
+        .math-pricing
+            div
+                span Subtotal
+                span.value
+                div
+                    p Shipping
+                    div.delivery.flex-ac-jc-sb
+                        div
+                            label.flex(data-shipping="free")
+                                input.checker(type='radio' name=name)
+                                span Free
+                            label.flex(data-shipping="flat")
+                                input.checker(type='radio' name=name)
+                                span Flat
+                        div.delivery__price
+                            span.value.checked $0.00
+                            span.value $10.00
+                div.promo.flex-ac-jc-sb
+                    p Promo discount:
+                    span.value - $0.00
+                div.total.flex-ac-jc-sb
+                    p Total:
+                    div
+                        span $
+                        span.value.text_bold(data-total) 0.00
+        if cart === 'cart-menu'
+            a.btn.btn__primary.btn__primary_green(href='./checkout.html' data-checkout) Checkout
+            a.cart-menu__footer-link.link-hover(href='./cart.html') View cart
+        else
+            .checkout-buttons
+                button.btn.btn__primary.btn__primary_blue.open-btn(data-target='order-accept') Place order
+                button.btn.btn__primary.btn__primary_red.open-btn(data-target='order-cancel') Cancel
+
+
