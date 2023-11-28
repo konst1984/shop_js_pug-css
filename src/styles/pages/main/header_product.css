@@ -1,26 +1,23 @@
 .box-grid {
 	display: var(--display, grid);
-
+	
 	--grid-col: 175px;
-
+	
 	grid-template-columns: repeat(auto-fit, minmax(min(var(--grid-col), 100%),1fr));
 	gap: var(--gutter, 30px);
 }
 
-.card__box-image{
+.card__box-image:not(.frominstagram .card__image){
 	position: relative;
-	width: fit-content;
+	width: 100%;
 	margin-bottom: 15px;
 	overflow: hidden;
+	border-radius: 10px
 }
 
 .card__thumbnail{
-	width: fit-content;
-	background-color: #f6f6f4;
-}
-
-.card__thumbnail img{
 	aspect-ratio: 3/4;
+	background-color: #f6f6f4;
 }
 
 .carousel .card__box-image:hover,
@@ -95,9 +92,9 @@
 }
 
 .card__box-image .label {
-	top: -3%;
+	top: -2%;
 	bottom: auto;
-	left:-3%;
+	left:-2%;
 }
 
 .card__box-image .label span{
@@ -109,8 +106,8 @@
 	padding: 10px;
 	border-radius: 50%;
 	background-color: var(--light-green-color);
-  color:var(--white-color);
-	font-size: var(--fs14);
+	color:var(--white-color);
+	font-size: 12px;
 	font-weight: var(--fw);
 	aspect-ratio: 1/1;
 }
@@ -140,7 +137,10 @@
 }
 
 .card__title a:hover{
-	letter-spacing: .5px;
+	border-radius: 5px;
+	background: linear-gradient(145deg, #ece5e5, #f0f0f0);
+	box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #fff;
+	letter-spacing: 0.5px;
 }
 
 

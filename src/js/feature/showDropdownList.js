@@ -1,11 +1,11 @@
 export class DropdownList {
-  constructor(selector, trigger) {
+  constructor(selector) {
     this.listContainer = document?.querySelector(selector);
     this.list = this.listContainer?.querySelector("ul");
     this.listItems = this.listContainer?.querySelectorAll("li");
 
-    this.listContainer?.addEventListener("click", (e) => {
-      if (e.target.closest(trigger)) {
+    window.addEventListener("click", (e) => {
+      if (e.target.closest(selector) && !e.target.closest('.options-item__btn')) {
         this.toggleClass(this.list, "active");
       } else {
         this.removeClass(this.list, "active");
@@ -21,6 +21,7 @@ export class DropdownList {
     item.classList.toggle(classname);
   }
   removeClass(item, classname) {
+    if(!item) return;
     item.classList.remove(classname);
   }
 

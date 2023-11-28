@@ -38,7 +38,7 @@ const clearData = () => {
       checkoutListCard,
       renderCardProductCheckoutPage,
     );
-    window.location.href = "../../index.html";
+    window.location.href = "../../../../index.html";
     clearTimeout(timer);
   }, 3000);
 };
@@ -47,7 +47,7 @@ const clearCheckoutData = () => {
   localStorage.removeItem("checkout");
   checkoutListCard.innerHTML = "";
   closeData("order-cancel");
-  window.location.href = "../../index.html";
+  window.location.href = "../../../../index.html";
 };
 
 const buttons = document.querySelectorAll(".checkout [data-target]");

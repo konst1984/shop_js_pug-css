@@ -1,10 +1,9 @@
 import { currency } from "./constants.js";
 
 const PAGE_LINK = "./product.html";
-
 export const renderCardProduct = (product) => {
-  const image = require(`../../../src/images/${product.image}`);
-  const imageHover = require(`../../../src/images/${product.imageHover}`);
+  const image = require(`./../../images/${product.image}`);
+  const imageHover = require(`./../../images/${product.imageHover}`);
   return `<div class='card' data-id=${product.id}>
               <div class="card__box-image">
                 <a class="permalink" href=${PAGE_LINK}?category=${
@@ -48,7 +47,7 @@ export const renderCardProduct = (product) => {
 };
 
 export const renderCarouselCard = (data) => {
-  return `<div class='swiper-slide'>
+  return `<div class='card-slide swiper-slide'>
               ${renderCardProduct(data)}
           </div>`;
 };
@@ -56,7 +55,7 @@ export const renderCarouselCard = (data) => {
 export const renderCartMenu = (cartList) => {
   const cartMenuList = document.querySelector(".cart-menu__list");
   const cartMenuHtml = cartList.map((item) => {
-    const image = require(`../../../src/images/${item.image}`);
+    const image = require(`./../../images/${item.image}`);
     return `<li class="cart-menu__item" data-id=${item.id}>
               <div class="cart-menu__item-wrapper">
                 <div class="product-quantity flex-ac">
@@ -85,7 +84,7 @@ export const renderCartMenu = (cartList) => {
 
 export const renderCartPageCardProduct = (prod) => {
   if (!prod) return;
-  const image = require(`../../../src/images/${prod.image}`);
+  const image = require(`./../../images/${prod.image}`);
   return `<div class="cart-card" data-id="${prod.id}" data-params="${
     prod.color
   }${prod.size}">
@@ -131,8 +130,8 @@ export const renderCartPageCardProduct = (prod) => {
 };
 //single-page
 export const renderSlideFromBigSwiper = (product) => {
-  const image = require(`../../../src/images/${product.image}`);
-  const imageHover = require(`../../../src/images/${product.imageHover}`);
+  const image = require(`./../../images/${product.image}`);
+  const imageHover = require(`./../../images/${product.imageHover}`);
   return `<div class="image-item swiper-slide" data-id=${product.id}>
                  <img src=${image} alt=${product.category}>
                </div>
@@ -142,18 +141,18 @@ export const renderSlideFromBigSwiper = (product) => {
 };
 
 export const renderSlideFromVerticalSwiper = (product) => {
-  const image = require(`../../../src/images/${product.image}`);
-  const imageHover = require(`../../../src/images/${product.imageHover}`);
+  const image = require(`./../../images/${product.image}`);
+  const imageHover = require(`./../../images/${product.imageHover}`);
   return `<div class="image-item swiper-slide" >
-                        <div class="image-wrapper" data-id=${product.id}>
-                          <img src=${image} alt=${product.category}>
-                        </div>
-                     </div>
-                     <div class="image-item swiper-slide">
-                        <div class="image-wrapper" data-id=${product.id}>
-                          <img src=${imageHover} alt=${product.category}>
-                        </div>
-                    </div>`;
+              <div class="card__thumbnail" data-id=${product.id}>
+                <img src=${image} alt=${product.category}>
+              </div>
+           </div>
+           <div class="image-item swiper-slide">
+              <div class="card__thumbnail" data-id=${product.id}>
+                <img src=${imageHover} alt=${product.category}>
+              </div>
+          </div>`;
 };
 
 export const addHtmlData = (htmlData, container) => {
@@ -172,7 +171,7 @@ export const renderCardsList = (data, container, renderFn) => {
 };
 
 export const renderCardProductCheckoutPage = (product) => {
-  const image = require(`../../../src/images/${product.image}`);
+  const image = require(`./../../images/${product.image}`);
   return `<div class="checkout-products__item box-grid" data-id="${product.id}" data-params="${product.color}${product.size}">
             <div class="card-thumbnail">
               <span class="item-floating flex-center">x${product.quantity}</span>

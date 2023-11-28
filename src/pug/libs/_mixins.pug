@@ -21,7 +21,7 @@ mixin actions
                 a.actions__link(href='#0')
                     i.ri-arrow-left-right-line
             li
-                button.actions__link.zoom-image.open-btn(data-target='swiper-zoom')
+                a.actions__link(href='#0')
                     i.ri-eye-line
 
 mixin sale(item)
@@ -37,9 +37,9 @@ mixin box-grid(valuesCard, title)
                   .card__box-image
                       a.permalink(href=`./product.html?category=${item.category}&id=${item.id}`)
                       .card__thumbnail
-                          img(src=require(`../../../src/images/${item.image}`) alt=item.type loading='lazy')
+                          img(src=require(`./../../images/${item.image}`) alt=item.type loading='lazy')
                       .card__thumbnail.card__thumbnail_hover
-                          img(src=require(`../../../src/images/${item.imageHover}`) alt=item.type loading='lazy')
+                          img(src=require(`./../../images/${item.imageHover}`) alt=item.type loading='lazy')
                       +actions
                       if item.sale
                           .label
@@ -60,9 +60,9 @@ mixin box-grid(valuesCard, title)
                             .card__box-image
                                 a.permalink(href=`./product.html?old_price=${item.before}&sale=${item.sale}&title=${item.title}&price=${item.current}#${item.type}`)
                                 .card__thumbnail
-                                    img(src=require(`../../../src/images/${item.image}`) alt=item.type loading='lazy')
+                                    img(src=require(`./../../images/${item.image}`) alt=item.type loading='lazy')
                                 .card__thumbnail.card__thumbnail_hover
-                                    img(src=require(`../../../src/images/${item.imageHover}`) alt=item.type )
+                                    img(src=require(`./../../images/${item.imageHover}`) alt=item.type )
                                 +actions
                                 if item.sale
                                     .label
@@ -81,7 +81,7 @@ mixin box-grid(valuesCard, title)
 mixin mainSliderItem(item)
     .slider__item.swiper-slide
         .slider__item-image
-            img(src=require(`../../../src/images/${item.image}`) alt='' loading='lazy')
+            img(src=require(`./../../images/${item.image}`) alt='' loading='lazy')
         .slider__item-content
             .container.wide
                 .content-wrapper
@@ -92,7 +92,7 @@ mixin mainSliderItem(item)
 mixin inlineCard(item, section)
     .card
         .card__image
-            img(src=require(`../../../src/images/${item.image}`)  alt='' loading='lazy')
+            img(src=require(`./../../images/${item.image}`)  alt='' loading='lazy')
         if section === 'fromblog'
             .card__info
                 a.card__link(href='#0')= item.title
@@ -105,12 +105,8 @@ mixin inlineCard(item, section)
 
 mixin discountPrice(cart, name)
     .discount
-        form.discount-form
-            input.discount-form__input(placeholder='Coupon')
-            button.btn.btn__secondary.btn__primary_green Apply
         .math-pricing
             div
-                span Subtotal
                 span.value
                 div
                     p Shipping

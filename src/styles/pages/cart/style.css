@@ -1,3 +1,19 @@
+.cart{
+	display: grid;
+	flex-grow: 1;
+}
+
+.cart .container{
+	display: grid;
+	grid-template-rows: auto 1fr;
+	overflow: hidden;
+}
+
+.content, .cart-table{
+	display: grid;
+	grid-template-rows: 1fr auto;
+}
+
 .cart-empty{
 	display: none;
 }
@@ -154,7 +170,7 @@
 	transition: letter-spacing 0.3s linear;
 	background-color: var(--light-green-color);
 	color: var(--white-color);
-	font-size: clamp(20px, 2vw, 40px);
+	font-size: clamp(16px, 2vw, 32px);
 	text-transform: uppercase;
 }
 

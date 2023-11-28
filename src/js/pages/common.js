@@ -54,14 +54,8 @@ submenu.forEach((menu) =>
 
 //tabs choose categories
 
-const categoriesDropdownList = new DropdownList(
-  "#list-categories",
-  "#option-btn-category",
-);
-const gradeParamsDropdownList = new DropdownList(
-  "#list-params",
-  "#option-btn-params",
-);
+const categoriesDropdownList = new DropdownList("#list-categories");
+const gradeParamsDropdownList = new DropdownList("#list-params");
 
 //Change title option list for tabs categories//
 
@@ -184,7 +178,7 @@ export const checkCartEmpty = () => {
     document.querySelector(".cart-total").style.display = "none";
   } else {
     document.querySelector(".cart-empty")?.classList.remove("active");
-    document.querySelector(".cart-table").style.display = "block";
+    document.querySelector(".cart-table").style.display = "grid";
     document.querySelector(".cart-total").style.display = "block";
   }
 };

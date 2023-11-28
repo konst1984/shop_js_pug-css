@@ -16,7 +16,6 @@ const sliderZoom = sliderContainer?.querySelector(".swiper-zoom");
 const swiperBanner = new Swiper(".slider", {
   loop: true,
   effect: "fade",
-  autoHeight: true,
   // autoplay: {
   //   delay: 5000,
   // },
@@ -72,7 +71,8 @@ const renderCarouselList = () => {
       products = products.concat(data1, data2, data3);
       renderCardsList(products, slider, renderCarouselCard);
     })
-    .catch(() => {
+    .catch((e) => {
+      console.log(e)
       registerErrorAndRenderWarn(slider);
     });
 };

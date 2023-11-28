@@ -56,6 +56,9 @@ block main
                                             else
                                                 input.checker(type='radio' name='pay-option')
                                                 i(class=`${icon}`)
+                            form.discount-form
+                                input.discount-form__input(placeholder='Coupon')
+                                button.btn.btn__secondary.btn__primary_green(type="button") Apply
                             +discountPrice('cart', 'shipping-checkout')
 block modal
     .data-popup.confirm-modal#order-accept
@@ -64,7 +67,7 @@ block modal
                 p Within an hour, the manager will contact you to clarify the details of the order.
                 p Thank you for choosing us!
                 p In a few seconds you will be redirected to the main page.
-                img(src=require(`../../../src/images/order_completed_icon.webp`) alt='')
+                img(src=require(`../../images/order_completed_icon.webp`) alt='')
     .data-popup.confirm-modal#order-cancel(aria-label="Modal confirm cancel order")
         .wrapper
             .data-content

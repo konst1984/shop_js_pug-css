@@ -125,46 +125,46 @@ const renderCarouselListNewProducts = () => {
 const thumbnailImageSlider = new Swiper(".outer-card__swiper", {
   initialSlide: initActiveSlideIndex,
   direction: "vertical",
-  spaceBetween: 15,
+  spaceBetween: 10,
   slidesPerView: 1,
   freeMode: true,
   watchSlidesProgress: true,
   breakpoints: {
     481: {
       direction: "vertical",
-      slidesPerView: 5,
+      slidesPerView: 4,
     },
-    640: {
+    648: {
       direction: "vertical",
-      slidesPerView: 6,
+      slidesPerView: 4,
     },
     769: {
       direction: "vertical",
-      slidesPerView: 3,
+      slidesPerView: 2,
     },
     840: {
       direction: "vertical",
-      slidesPerView: 3.5,
+      slidesPerView: 2.5,
     },
     980: {
       direction: "vertical",
-      slidesPerView: 5.5,
+      slidesPerView: 3.5
     },
   },
 });
 
 const mainImageSlider = new Swiper(".outer-main__swiper", {
   initialSlide: initActiveSlideIndex,
-  autoHeight: true,
 
   pagination: {
     el: ".swiper-pagination",
     clickable: true,
-    dynamicBullets: true,
   },
   scrollbar: {
     el: ".swiper-scrollbar",
   },
+  keyboard: true,
+  wheel: true,
   thumbs: {
     swiper: thumbnailImageSlider,
   },

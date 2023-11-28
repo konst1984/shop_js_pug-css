@@ -1,6 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const StylelintPlugin = require("stylelint-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const webpack = require("webpack");
 const path =require('path');
 
@@ -44,11 +46,19 @@ module.exports = (env) => {
             splitChunks: {
                 chunks: 'all',
             },
+            minimize: !isDev,
+            minimizer: [
+                new CssMinimizerPlugin(),
+                new TerserPlugin({
+                    test: /\.js(\?.*)?$/i,
+                }),
+            ],
         },
         devServer: isDev
           ? {
               port: PORT,
               open: true,
+              hot: isDev
           }
           : undefined,
         output: {
@@ -59,6 +69,9 @@ module.exports = (env) => {
         },
         plugins: [
             new webpack.ProgressPlugin(),
+            new MiniCssExtractPlugin({
+                filename: "[name].[contenthash].css",
+            }),
             ...pages.map((page) => (
               new HtmlWebpackPlugin({
                   filename: `${page}.html`,
@@ -71,26 +84,23 @@ module.exports = (env) => {
                 context: "src",
                 files: "**/*.css",
             }),
-            new MiniCssExtractPlugin({
-                filename: "[name].[contenthash].css",
-            }),
         ],
         module: {
             rules: [
+                {
+                    test: /\.css$/,
+                    use: [
+                        MiniCssExtractPlugin.loader, "css-loader",
+                    ],
+                },
                 {
                     test: /\.html$/i,
                     loader: "html-loader",
                 },
                 {
-                    test: /\.css$/,
-                    use: [
-                        isDev ? "style-loader" : MiniCssExtractPlugin.loader,
-                        "css-loader",
-                    ],
-                },
-                {
                     test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
                     type: "asset/resource",
+
                 },
                 {
                     test: /\.(woff|woff2|eot|ttf|otf)$/i,

@@ -1,10 +1,15 @@
 .slider{
 	position: relative;
-	overflow: visible;
+	max-height: 1200px;
+	margin: 0;
 }
 
 .slider :where(.slider__item, .slider__item-image) {
 	position: relative;
+}
+
+.slider__wrapper.swiper-wrapper{
+	height: 100%;
 }
 
 .slider__item{
@@ -122,7 +127,8 @@
 	}
 
 	.slider__item-image{
-		height: calc(100vh - 80px);
+		height: 100vh;
+		max-height: 1200px;
 	}
 	
 	.slider__item-content{
