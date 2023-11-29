@@ -54,14 +54,14 @@ export const renderCarouselCard = (data) => {
 
 export const renderCartMenu = (cartList) => {
   const cartMenuList = document.querySelector(".cart-menu__list");
-  const cartMenuHtml = cartList.map((item) => {
-    const image = require(`./../../images/${item.image}`);
-    return `<li class="cart-menu__item" data-id=${item.id}>
+  const cartMenuHtml = cartList.map((product) => {
+    const image = require(`./../../images/${product.image}`);
+    return `<li class="cart-menu__item" data-id="${product.id}-${product.color}-${product.size}">
               <div class="cart-menu__item-wrapper">
                 <div class="product-quantity flex-ac">
                   <button class="product-quantity__btn" data-action="decrease-cart" type="button" aria-label="add item quantity">-</button>
                   <label class="label">
-                    <input class="input" data-quantity type="text" value=${item.quantity}>
+                    <input class="input" data-quantity type="text" value=${product.quantity}>
                   </label>
                   <button class="product-quantity__btn" data-action="increase-cart" type="button" aria-label="remove item quantity">+</button>
                 </div>
@@ -69,10 +69,10 @@ export const renderCartMenu = (cartList) => {
                   <a class="permalink" href="#0"><img src=${image} alt="Product" loading="lazy"></a>
                 </div>
                 <div class="variants variants_pl">
-                  <h4 class="variants__title">${item.title}</h4>
-                  <div class="variants__item color text text_gray"><span>Color:</span><span class="text color__value">${item.color}</span></div>
-                  <div class="variants__item size text text_gray"><span>Size:</span><span class="text text_upper size__value">${item.size}</span></div>
-                  <div class="variants__item price text text_gray">Price: <span>${currency}</span><span class="text text_bold">${item.price}</span></div>
+                  <h4 class="variants__title">${product.title}</h4>
+                  <div class="variants__item color text text_gray"><span>Color:</span><span class="text color__value">${product.color}</span></div>
+                  <div class="variants__item size text text_gray"><span>Size:</span><span class="text text_upper size__value">${product.size}</span></div>
+                  <div class="variants__item price text text_gray">Price: <span>${currency}</span><span class="text text_bold">${product.price}</span></div>
                 </div>
               </div>
               <button class="btn btn__secondary btn__remove" data-remove><i class="ri-delete-bin-6-line"></i></button>
@@ -85,9 +85,7 @@ export const renderCartMenu = (cartList) => {
 export const renderCartPageCardProduct = (prod) => {
   if (!prod) return;
   const image = require(`./../../images/${prod.image}`);
-  return `<div class="cart-card" data-id="${prod.id}" data-params="${
-    prod.color
-  }${prod.size}">
+  return `<div class="cart-card" data-id="${prod.id}-${prod.color}-${prod.size}">
               <div class="card-thumbnail">
               <a class="permalink" href=${PAGE_LINK}?category=${
                 prod.category
@@ -172,18 +170,21 @@ export const renderCardsList = (data, container, renderFn) => {
 
 export const renderCardProductCheckoutPage = (product) => {
   const image = require(`./../../images/${product.image}`);
-  return `<div class="checkout-products__item box-grid" data-id="${product.id}" data-params="${product.color}${product.size}">
+  return `<div class="checkout-products__item box-grid" data-id="${product.id}-${product.color}-${product.size}">
             <div class="card-thumbnail">
-              <span class="item-floating flex-center">x${product.quantity}</span>
+              <span class="item-floating flex-center">x<span class="count">${product.quantity}</span></span>
               <a class="permalink" href=${PAGE_LINK}?category=${product.category}&id=${product.id} aria-label="go to the product page">
               <img src=${image} alt=${product.category} loading="lazy">
               </a>
             </div>
             <div class="variants">
               <h4 class="variants__title">${product.title}</h4>
-              <div class="color text_gray"><span>Color:</span><span>${product.color}</span></div>
-              <div class="size text_gray"><span>Size:</span><span>${product.size}</span></div>
+              <div class="color text_gray"><span>Color:</span><span class="color__value">${product.color}</span></div>
+              <div class="size text_gray"><span>Size:</span><span class="size__value">${product.size}</span></div>
               <div class="price text_gray"><span>Price:</span>${currency}${product.price}</div>
+              <button class="btn btn__remove" aria-label="delete product" data-remove>
+                <i class="ri-delete-bin-6-fill"></i>
+              </button>
             </div>
           </div>`;
 };

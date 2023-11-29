@@ -5,7 +5,7 @@ import { renderTotalPrice } from "../feature/renderTotalPrice.js";
 import { renderCartMenu } from "../feature/renderHtml.js";
 import store from "../store.js";
 import { checkShippingForPage } from "../feature/checkShippingForPage.js";
-import { changeParamsFromCartMenu } from "../feature/changeParamsFromCartMenu.js";
+import { changeQuantityInCartMenu } from "../feature/changeQuantityInCartMenu.js";
 
 //Open/Close hidden elements//
 
@@ -127,16 +127,7 @@ const isVisibleHeader = () => {
 
 const scrollShowHeader = isVisibleHeader();
 
-const headerVisibility = () => {
-  scrollShowHeader();
-  isVisibleScrollBtn();
-};
-
-window.addEventListener("scroll", headerVisibility);
-
-//the behavior of the scrollTopBtn during an scroll//
-
-const isVisibleScrollBtn = () => {
+const isVisibleScrollUpBtn = () => {
   if (window.scrollY > 1000 && window.innerWidth > 992) {
     scrollTopBtn.style.display = "flex";
     scrollTopBtn.style.alignItems = "center";
@@ -144,6 +135,16 @@ const isVisibleScrollBtn = () => {
     scrollTopBtn.style.display = "none";
   }
 };
+
+const headerVisibility = () => {
+  scrollShowHeader();
+  isVisibleScrollUpBtn();
+};
+
+window.addEventListener("scroll", headerVisibility);
+
+//the behavior of the scrollTopBtn during an scroll//
+
 
 const scrollUp = () => window.scrollTo(0, 0);
 
@@ -170,6 +171,7 @@ const cartMenu = document.getElementById("cart-menu");
 const totalCartMenu = document.querySelector(
   ".cart-menu .math-pricing .total .value",
 );
+
 export const checkCartEmpty = () => {
   if (window.location.href.search("cart") < 0) return;
   if (store.state.cart.length === 0) {
@@ -183,23 +185,25 @@ export const checkCartEmpty = () => {
   }
 };
 
-export const changeQuantityInCart = (e, value) => {
-  const elem = e.target.closest(`[data-id]`);
-  const id = +elem.dataset.id;
-  const color = elem.querySelector(".color__value").textContent;
-  const size = elem.querySelector(".size__value").textContent;
+const updateInfoAppOrder = () => {
+  store.calcTotalPriceStore();
+  store.writeToStorage();
+  store.update();
+  total.forEach((item) => renderTotalPrice(item, store.state.total));
+}
 
+export const changeQuantityCartMenuItem = (e, value) => {
+  const elem = e.target.closest(`[data-id]`);
+  const [id, color, size] = elem.dataset.id.split('-');
   const productIdx = store.state.cart.findIndex(
-    (item) => item.id === id && item.size === size && item.color === color,
+    (item) => item.id === +id && item.size === size && item.color === color,
   );
   if (productIdx > -1) {
     store.state.cart[productIdx].quantity = Number(value);
   }
 
-  store.writeToStorage();
   checkCartEmpty();
-  store.calcTotalPriceStore();
-  total.forEach((item) => renderTotalPrice(item, store.state.total));
+  updateInfoAppOrder();
   updateCartCountForNavIcons();
 };
 
@@ -245,40 +249,27 @@ const swiperCarousel = new Swiper(".carousel-swiper", {
   },
 });
 
-const delProductFromStateAndUpdateStorage = (e) => {
+
+export const delProductFromStateAndUpdateStorage = (e) => {
   const prodWrapper = e.target.closest("[data-id]");
   const id = parseInt(prodWrapper.dataset.id);
-  const color = prodWrapper
-    .querySelector(".color__value")
-    .innerText.toLowerCase();
-  const size = prodWrapper
-    .querySelector(".size__value")
-    .innerText.toLowerCase();
+  const color = prodWrapper.querySelector(".color__value").innerText.toLowerCase();
+  const size = prodWrapper.querySelector(".size__value").innerText.toLowerCase();
   const productParamsForCompare = { id, color, size };
   store.removeFromStateCart(productParamsForCompare);
-
+  const cartPageProd = document.querySelector(`.cart [data-id="${id}-${color}-${size}"]`);
   prodWrapper.remove();
-
-  store.writeToStorage();
-  store.update();
-  store.calcTotalPriceStore();
-
-  total.forEach((item) => renderTotalPrice(item, store.state.total));
+  cartPageProd?.remove();
   updateCartCountForNavIcons();
 };
 
-window.addEventListener("click", function (e) {
-  const card = e.target.closest("[data-id]");
-  const counterWrapper = card?.querySelector(".product-quantity");
-  const dataCounter = counterWrapper?.querySelector("[data-quantity]");
 
-  if (
-    e.target.dataset.action === "increase" ||
-    e.target.dataset.action === "increase-cart"
-  ) {
+window.addEventListener("click", function (e) {
+  const dataCounter = e.target.closest("[data-id]")?.querySelector(".product-quantity [data-quantity]");
+  const buttonCounters =["decrease","increase","decrease-cart","increase-cart"]
+
+  if (e.target.dataset.action === "increase-cart") {
     dataCounter.value = Number(dataCounter.value) + 1;
-    store.calcTotalPriceStore();
-    total.forEach((item) => renderTotalPrice(item, store.state.total));
   }
 
   if (
@@ -286,31 +277,18 @@ window.addEventListener("click", function (e) {
       e.target.dataset.action === "decrease-cart") &&
     e.target.closest(".cart-menu")
   ) {
-    changeParamsFromCartMenu(e, card);
-  }
-
-  if (e.target.dataset.action === "decrease") {
-    if (parseInt(dataCounter.value) > 1) {
-      dataCounter.value = --dataCounter.value;
-    }
-    store.calcTotalPriceStore();
-    total.forEach((item) => renderTotalPrice(item, store.state.total));
+    changeQuantityInCartMenu(e);
   }
 
   if (e.target.dataset.action === "decrease-cart") {
-    if (dataCounter.value <= 1) {
-      delProductFromStateAndUpdateStorage(e);
-    } else {
-      dataCounter.value = --dataCounter.value;
-    }
-    changeQuantityInCart(e, parseInt(dataCounter.value));
+    changeQuantityCartMenuItem(e, parseInt(dataCounter.value));
+    updateCartCountForNavIcons();
   }
 
   if (
-    e.target.dataset.action === "increase-cart" ||
-    e.target.dataset.action === "decrease-cart"
+    e.target.dataset.action === "increase-cart"
   ) {
-    changeQuantityInCart(e, parseInt(dataCounter.value));
+    changeQuantityCartMenuItem(e, parseInt(dataCounter.value));
     if (e.target.closest(".cart-card")) {
       let priceItem = e.target
         .closest(".cart-card")
@@ -324,27 +302,27 @@ window.addEventListener("click", function (e) {
     }
   }
 
+  if(buttonCounters.includes(e.target.dataset.action)){
+    updateInfoAppOrder();
+  }
+
   if (e.target.closest(".btn__remove[data-remove]")) {
     delProductFromStateAndUpdateStorage(e);
     checkCartEmpty();
+    updateInfoAppOrder();
+    updateCartCountForNavIcons();
   }
 
   if (e.target.closest("[data-shipping]")) {
-    const totalValueAll = document.querySelectorAll(
-      ".math-pricing .total .value",
-    );
     if (e.target.closest('[data-shipping="flat"]')) {
       store.setShipping(10);
     }
     if (e.target.closest('[data-shipping="free"]')) {
       store.setShipping(0);
     }
-    store.calcTotalPriceStore();
-    totalValueAll.forEach((item) => (item.textContent = store.state.total));
+    updateInfoAppOrder();
   }
-  store.calcTotalPriceStore();
-  store.writeToStorage();
-  store.update();
+
 });
 
 checkShippingForPage(store.state.shipping);

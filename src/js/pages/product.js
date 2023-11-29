@@ -11,6 +11,7 @@ import {
   renderCarouselCard,
 } from "../feature/renderHtml.js";
 import { registerErrorAndRenderWarn } from "./index.js";
+import Counter from "../feature/counter";
 
 const productContent = document.querySelector(".product");
 const mainSlider = document.querySelector(".outer-main__wrapper");
@@ -89,6 +90,7 @@ const renderCardDetail = (product) => {
   renderColorVariants(product.color, colorsBox);
   renderSizeVariants(product.size, sizeBox);
   quantity.value = product.quantity;
+  new Counter('.product-form',1)
 };
 
 //Fetch product info//

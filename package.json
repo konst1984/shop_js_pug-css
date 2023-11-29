@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "wp-server": "webpack serve --env port=3008",
-    "jsonserver": "json-server --watch src/jsonserver/db.json --port 3004",
+    "jsonserver": "json-server --watch db.json --port 3004",
     "dev": "concurrently --kill-others \"npm run wp-server\" \"npm run jsonserver\"",
     "stylelint:fix": "npx stylelint \"src/**/*.css\" --fix",
     "build:prod": "webpack --env mode=production",

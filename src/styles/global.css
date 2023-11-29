@@ -21,6 +21,35 @@
 	--fade: fadein .3s ease-out both;
 }
 
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+section{
+	animation: reveal linear both;
+	animation-timeline: view(block);
+	animation-range: cover 0% cover 40%;
+	animation-duration: 0.5s;
+}
+
+@keyframes reveal {
+	0%{
+		transform: translateY(50px);
+		filter:blur(7px)
+	}
+	
+	60%{
+		filter:blur(0)
+	}
+	
+	100%{
+		transform: translateY(0);
+	}
+}
+
 html{
 	scrollbar-gutter:stable;
 }
@@ -32,11 +61,6 @@ html{
 	}
 }
 
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
 
 body {
 	display: flex;
