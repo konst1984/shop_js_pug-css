@@ -1,15 +1,16 @@
 {
-  "name": "webpacke",
+  "name": "clothes-shop-for-women",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://shop-js-pug-css.vercel.app/index.html",
   "scripts": {
     "dev": "webpack serve --env port=3008",
     "stylelint:fix": "npx stylelint \"src/**/*.css\" --fix",
     "build:prod": "webpack --env mode=production",
     "build:dev": "webpack --env mode=development"
   },
-  "keywords": [],
+  "keywords": ["women clothes", "online shop"],
   "author": "",
   "license": "ISC",
   "devDependencies": {
