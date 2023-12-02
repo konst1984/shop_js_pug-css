@@ -1,5 +1,5 @@
 ## Shop Landing(HTML,CSS,JS,PUG)
-### [DEMO]('https://shop-js-pug-css.vercel.app/index.html')
+### [DEMO](https://shop-js-pug-css.vercel.app/index.html)
 Start project:
 <pre>
     npm dev
