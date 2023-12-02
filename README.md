@@ -10,7 +10,6 @@ Technologies
     - pug
     - webpack
     - css
-    - json-server
 </pre>
 
 ![image](./screenshots/main.webp)

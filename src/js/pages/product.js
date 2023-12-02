@@ -95,11 +95,11 @@ const renderCardDetail = (product) => {
 
 //Fetch product info//
 const getProduct = () => {
-  Promise.all([getData(`${category}/${productId}`), getData(`${category}`)])
+  Promise.all([getData(`${category}&id=${productId}`), getData(`${category}`)])
     .then(([prodItem, prodlist]) => {
-      store.setCurrentProduct(prodItem);
+      store.setCurrentProduct(prodItem[0]);
       store.setProducts(prodlist);
-      renderCardDetail(prodItem);
+      renderCardDetail(prodItem[0]);
       renderImagesListFromSliders(prodlist);
       summaryContent.classList.remove("hide");
       summary.querySelector(".single-loader").classList.add("hide");

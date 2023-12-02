@@ -266,7 +266,7 @@ export const delProductFromStateAndUpdateStorage = (e) => {
 
 window.addEventListener("click", function (e) {
   const dataCounter = e.target.closest("[data-id]")?.querySelector(".product-quantity [data-quantity]");
-  const buttonCounters =["decrease","increase","decrease-cart","increase-cart"]
+  const buttonCounters =["decrease","increase","decrease-cart","increase-cart"];
 
   if (e.target.dataset.action === "increase-cart") {
     dataCounter.value = Number(dataCounter.value) + 1;
@@ -323,6 +323,13 @@ window.addEventListener("click", function (e) {
     updateInfoAppOrder();
   }
 
+});
+
+document.addEventListener('keydown', function(e) {
+  if(e.code ==="Escape"){
+    document.querySelectorAll('.active').forEach(node => node.classList.remove('active'))
+    document.body.classList.remove("overflow-hidden");
+  }
 });
 
 checkShippingForPage(store.state.shipping);

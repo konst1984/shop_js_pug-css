@@ -1,5 +1,5 @@
 
-const BASE_URL = 'http://localhost:3004/';
+const BASE_URL = 'https://clothes-shop-ubov.onrender.com/clothes?category=';
 
 export const getData = async (query) => {
   try{

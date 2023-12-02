@@ -16,9 +16,9 @@ const sliderZoom = sliderContainer?.querySelector(".swiper-zoom");
 const swiperBanner = new Swiper(".slider", {
   loop: true,
   effect: "fade",
-  // autoplay: {
-  //   delay: 5000,
-  // },
+  autoplay: {
+    delay: 5000,
+  },
   pagination: {
     el: ".swiper-pagination",
     clickable: true,
