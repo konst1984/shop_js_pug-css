@@ -11,6 +11,7 @@ Technologies
     - pug
     - webpack
     - css
+    - stylelint
 </pre>
 
 ![image](./screenshots/main.webp)

@@ -16,7 +16,7 @@ const total = document.querySelectorAll("[data-total]");
 export const closeData = (id) => {
   document.querySelector(`#${id}`)?.classList.remove("active");
   overlay.classList.remove("active");
-  document.body.classList.remove("overflow-hidden");
+  document.documentElement.classList.remove("overflow-hidden");
 };
 
 for (let i = 0; i < triggerOpen.length; i++) {
@@ -26,7 +26,7 @@ for (let i = 0; i < triggerOpen.length; i++) {
   triggerOpen[i].addEventListener("click", function () {
     targetEl?.classList.add("active");
     overlay.classList.add("active");
-    document.body.classList.add("overflow-hidden");
+    document.documentElement.classList.add("overflow-hidden");
   });
 
   const closeDataById = () => closeData(currentId);
